@@ -25,10 +25,11 @@ Exemplo:
 ```
 
 Para agilizar o processo, abrir o chamado para extrair as seguintes informações de produção.
+
 * Substituir o parametro client_id da clausula where pelo id do cliente.
 * Substituir o parametro code da clausula where pelo número de protocolos.
 
-Para montar essa consulta de forma automatizada e em lote, abra o arquivo protocolo_consulta_lote.js e modifique a variável (arr_protocols) colocando os devidos protocolos
+Para montar essa consulta de forma automatizada e em lote, abra o arquivo *protocolo_consulta_lote.js* e modifique a variável (arr_protocols) colocando os devidos protocolos.
 
 ``` SQL
 /* ID DA TIPOLOGIA ATUAL / DESCRICAO DE ACORDO COM O PROTOCOLO */
@@ -42,13 +43,18 @@ Para montar essa consulta de forma automatizada e em lote, abra o arquivo protoc
 ```
 
 Após isso abrir o chamado para extrair todas tipologias disponíveis para determinado cliente.
+
 * Substituir o parametro client_id da clausula where pelo id do cliente.
 
 ``` SQL
 /* TIPOLOGIAS DISPONIVEIS PARA O CLIENTE | ID da tipologia e descrição */
 SELECT cat_type.id, ictd.description  FROM casemanagement.incidentcategorytype cat_type
-			INNER JOIN public.incident_category_type_description ictd on cat_type.id = ictd.incident_category_type_id
+   INNER JOIN public.incident_category_type_description ictd on cat_type.id = ictd.incident_category_type_id
 WHERE cat_type.client_id = 19 AND ictd."language" = 'pt_BR'
 ```
 
-TERMINAR DE DOCUMENTAR ESSA PARTE
+Para montar o update de forma automatizada e em lote, abra o arquivo *update_tipologias_lote.js* e modifique as variáveis (**transformObj e tipologyObj**).
+
+A variável **tipologyObj** será um dicionário das tipologias existentes, deve seguir { id: nome_da_tipologia }
+A variável **transformObj** será um dicionário dos protocolos com seus novos valores { id_protocolo: valor_novo }
+
