@@ -12,6 +12,7 @@ const transformObj = {
     4484361:'Tipo 3',
     4692998:'Discriminação',
     4751048:'Tipo 2',
+    123456: 'NÂO EXISTE NAS TIPOLOGIAS EXISTENTES'
 };
 
 
@@ -40,8 +41,8 @@ const tipologyObj = {
 function getTypologyCategoryID(searchVal) {
     let searchData = '';
 
-    Object.entries(tipologyObj).map(([key, value]) => {
-        if(String(searchVal).trim() === String(value).trim()) {
+    Object.entries(tipologyObj).map(([key, value]) => {       
+        if(String(searchVal).toUpperCase().trim() === String(value).toUpperCase().trim()) {
             searchData = key;
         }        
     });
@@ -67,6 +68,14 @@ SAMPLE SQL
 
 Object.entries(transformObj).map(([key,value]) => {
     let categoryId = getTypologyCategoryID(value);
+
+    if(categoryId === '') {
+        console.log(` ---------- CUIDADO ! TIPOLOGIA INEXISTENTE ---------- \n 
+            { Protocolo: ${key} , PARA: ${value} } \n
+            SOLICITAR PARA O PO ENTRAR EM CONTATO COM O CLIENTE PARA CRIAÇÃO DO TIPOLOGIA
+        `);
+        return
+    }
     
     sqlStatment += `\n SELECT i.code, i.categorytype_id FROM casemanagement.incident i WHERE i.code = ${key};`;
     sqlStatment += `\n BEGIN;`;
