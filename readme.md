@@ -13,8 +13,8 @@ Caso não tenha o ID do cliente.
 
 Exemplo:
 
-| PROTOCOLO     | Second Header   | Second Header |
-| ------------- | --------------- | ------------- |
+| PROTOCOLO     | DE              | Para                         |
+| ------------- | --------------- | ---------------------------- |
 | 4318276       | Assédio moral   | Conduta inapropriada
 | 5001340       | Agressão física | Descomprimento de protocolos
 
@@ -58,3 +58,9 @@ Para montar o update de forma automatizada e em lote, abra o arquivo *update_tip
 A variável **tipologyObj** será um dicionário das tipologias existentes, deve seguir { id: nome_da_tipologia }
 A variável **transformObj** será um dicionário dos protocolos com seus novos valores { id_protocolo: valor_novo }
 
+
+# Alteração tipologia / localidade relator
+
+Primeiramente para realizar essa alteração é necessário que o time de produto disponibilize uma tabela contendo os protocolos a serem consultados.
+
+Para montar essa consulta de forma automatizada e em lote, abra o arquivo *protocolo_consulta_lote_relator.js* e modifique a variável (arr_protocols) colocando os devidos códigos de protocólos e valores de protocolos hexadecimais.
